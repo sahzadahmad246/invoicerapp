@@ -1,0 +1,391 @@
+
+.page {
+  font-family: Helvetica;
+  padding: 30pt;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bussinessName {
+  font-size: 40pt;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.address {
+  font-size: 17pt;
+}
+.contact {
+  display: flex;
+}
+.contact .number,
+.email,
+.gst {
+  padding: 3px 10px;
+  font-size: 17pt;
+}
+
+.customer-info {
+  margin-top: 20pt;
+  display: flex;
+  font-size: 22px;
+  justify-content: space-between;
+  
+}
+.left-customer-info {
+  border-top-left-radius: 9px;
+  width: 50%;
+}
+.right-customer-info {
+  
+  width: 50%;
+}
+.customer-data div {
+  padding: 6px 0px;
+}
+.customer-data-title {
+  background: #f0f0f0;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  padding: 8px;
+}
+
+.table {
+  
+  margin-top: 20pt;
+  height: 1000px;
+  font-size: 22px;
+  position: relative;
+  background: #fff;
+}
+
+.tableHeader {
+  display: table;
+  width: 100%;
+
+  background: #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.tableRow .description,
+.tableRow .quantity,
+.tableRow .rate,
+.tableRow .amount {
+  width: 55%;
+  padding: 0px;
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+ 
+}
+
+.tableRow .quantity,
+.tableRow .rate,
+.tableRow .amount {
+  width: 15%;
+}
+
+.imei-in-invoice {
+  padding: 0px;
+  font-weight: 400;
+}
+.tableHeader .description {
+  width: 55%;
+  padding: 7px;
+  text-align: center;
+}
+.tableHeader .quantity,
+.rate,
+.amount {
+  width: 15%;
+  padding: 7px;
+  text-align: center;
+}
+
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  
+  border-top: none; 
+}
+
+.tableRow {
+  display: flex;
+  border-bottom-width: 1pt;
+ 
+  align-items: center;
+  height: 30pt;
+  font-weight: bold;
+}
+.footer-div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  
+}
+.footer-div .footer {
+  border-bottom-width: 1pt;
+  border-bottom-color: #bfbfbf;
+  align-items: center;
+  height: 30pt;
+  font-weight: bold;
+}
+.footer-div .tableRow .description {
+  font-weight: lighter;
+  padding: 5px;
+}
+.footer-div .tableRow .quantity {
+  background: #f0f0f0;
+}
+
+.terms {
+  margin-top: 20pt;
+  
+}
+
+.stamp {
+  height: 110px;
+  
+}
+.sign {
+  display: flex;
+  justify-content: space-around;
+
+  font-weight: 700;
+  width: 35%;
+}
+
+@media (max-width: 768px) {
+  .page {
+    font-family: Helvetica;
+    padding: 0px;
+    
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bussinessName {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 0px;
+  }
+
+  .address {
+    font-size: 8px;
+  }
+  .contact {
+    display: flex;
+  }
+  .contact .number,
+  .email,
+  .gst {
+    padding: 3px 3px;
+    font-size: 8px;
+  }
+
+  .customer-info {
+    margin-top: 4px;
+    display: flex;
+    font-size: 22px;
+    
+    justify-content: space-between;
+    
+  }
+  .left-customer-info {
+    border-top-left-radius: 9px;
+    width: 50%;
+  }
+  .right-customer-info {
+    
+    width: 50%;
+  }
+  .customer-data div {
+    padding: 0px 5px;
+    font-size: 8px;
+    margin: 0px;
+  }
+  .customer-data {
+  }
+  .customer-data-title {
+    font-size: 8px;
+    background: #f0f0f0;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    padding: 0px 5px;
+  }
+  .table {
+
+    margin-top: 10px;
+    height: 235px;
+    font-size: 10px;
+    padding-bottom: 0px;
+    position: relative;
+    background: #fff;
+  }
+
+  .tableHeader {
+    display: table;
+    font-size: 8px;
+    width: 100%;
+
+    background: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+  }
+
+  .tableRow .description,
+  .tableRow .quantity,
+  .tableRow .rate,
+  .tableRow .amount {
+    width: 55%;
+    padding: 0px;
+    margin-top: 0px;
+    font-weight: 600;
+    font-size: 8px;
+    text-align: center;
+    
+  }
+
+  .tableRow .quantity,
+  .tableRow .rate,
+  .tableRow .amount {
+    width: 15%;
+  }
+
+  .imei-in-invoice {
+    padding: 0px;
+    font-weight: 400;
+  }
+  .tableHeader .description {
+    width: 55%;
+    padding: 1px;
+    text-align: center;
+  }
+  .tableHeader .quantity,
+  .rate,
+  .amount {
+    width: 15%;
+    padding: 1px;
+    text-align: center;
+  }
+
+  .tableRow {
+    display: flex;
+    justify-content: space-between;
+
+    border-top: none; 
+  }
+
+  .tableRow {
+    display: flex;
+    border-bottom-width: 1pt;
+
+    margin-top: 6px;
+    align-items: center;
+    height: 15px;
+    font-weight: bold;
+    font-size: 10px;
+  }
+  .footer-div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 0.5px solid #bfbfbf;
+    padding: 5px 0px;
+  }
+  .footer-div .footer {
+    align-items: center;
+    height: 20px;
+    font-weight: bold;
+    margin-top: 0px;
+  }
+  .footer-div .tableRow .description {
+    font-weight: lighter;
+    padding: 3px 5px;
+  }
+  .footer-div .tableRow .quantity {
+    background: none;
+  }
+  .footer .amount,
+  .footer .quantity,
+  .footer .rate {
+    border-left: 0.5px solid #bfbfbf;
+  }
+  .terms {
+    margin-top: 0px;
+    
+  }
+  .terms .term-top{
+    display: flex;
+    padding: 5px;
+    font-size: 8px;
+    border-bottom: 0.5px solid #bfbfbf;
+  }
+  .terms .term-bottom{
+    display: flex;
+    flex-direction: column;
+    border-top: 0.5px solid #bfbfbf;
+    padding: 5px;
+    font-size: 8px;
+  }
+
+  .stamp {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 3px 0px;
+    border: 0.5px solid #bfbfbf;
+    border-top: none;
+  }
+  .sign {
+    display: flex;
+    justify-content: space-around;
+    font-size: 8px;
+    font-weight: 700;
+    width: 35%;
+  }
+  .thanks{
+    font-weight: bold;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px 0px;
+  }
+  .print-button {
+    
+    padding: 10px 0px;
+    background: #231f39;
+    border: none;
+    margin: 16px;
+    color: #fff;
+    border-radius: 7px;
+  }
+  /* .back-button-div{
+    width: 80%;
+    border: 1px solid red;
+  } */
+  .back-button{
+    /* width: 20%; */
+    
+    background: transparent;
+    border: none;
+    margin: 10px;
+  }
+  .back-button i{
+    font-size: 25px;
+  }
+}

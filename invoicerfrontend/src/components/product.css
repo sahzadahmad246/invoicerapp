@@ -1,0 +1,246 @@
+.product-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  height: auto;
+}
+.product-container {
+  width: 60%;
+  margin: 10px 0px;
+  
+  border-radius: 10px;
+  padding: 15px 20px;
+  background: #fff;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  
+  flex-direction: column;
+}
+
+.product-container .product-form {
+  
+  display: flex;
+  flex-direction: column;
+}
+.name-address{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.product-form h4 span {
+  font-weight: 400;
+  
+}
+.product-form p {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+}
+.product-form .personal-info-1 {
+  display: flex;
+  margin: 10px 0px;
+  justify-content: space-around;
+}
+ .personal-info-2 {
+  display: flex;
+  margin: 10px 0px;
+  justify-content: space-around;
+  
+}
+.personal-info-1 input {
+  width: 40%;
+  margin: 5px 0px;
+}
+.personal-info-2 input {
+  width: 40%;
+  margin: 5px 0px;
+}
+
+.edit-save {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.button {
+  padding: 6px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit-button {
+  width: 45%;
+  background-color: white;
+  color: #000;
+  border: 1px solid black;
+}
+
+.save-button {
+  width: 45%;
+
+  background-color: black;
+  color: #fff;
+}
+.save-button.disabled {
+  opacity: 0.5; 
+  cursor: not-allowed;
+}
+
+
+.update-message {
+  position: fixed;
+  top: 19px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 35%;
+  height: 60px;
+  background-color: #d1e7dd; 
+    border: 1px solid #203f28;
+   border-radius: 8px;
+ 
+  padding: 10px;
+ 
+  display: flex;
+  
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease-in-out;
+  
+}
+
+
+ .update-message.success {
+    color:#203f28;
+    
+  }
+
+.update-message.error {
+  color: red;
+} 
+
+
+@media (max-width: 768px) {
+  .product-container {
+    width: 100%;
+    margin: 0px 0px;
+    
+    border-radius: 0px;
+    padding: 15px 10px;
+    background: #fff;
+    
+    display: flex;
+  
+    flex-direction: column;
+  }
+  .product-container .product-form {
+    
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+    border-radius: 9px;
+    
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+  }
+  .name-address{
+    display: flex;
+    justify-content: center;
+    align-items:start;
+    flex-direction: column;
+   
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    background: rgb(223, 238, 231);
+    padding: 12px;
+  }
+  .product-form h4  {
+    font-weight: 700;
+    font-size: 17px;
+   color: green;
+  }
+  .product-form h4 span {
+    font-weight: 700;
+    
+  }
+  .product-form p {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+  }
+  .product-form .personal-info-1 {
+    display: flex;
+    margin: 5px 10px;
+
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  
+  .personal-info-1 input {
+    width: 100%;
+    margin: 10px 0px;
+    
+  }
+  .personal-info-2 input {
+    width: 100%;
+    margin: 10px 0px;
+    outline: none;
+    
+  }
+  .personal-info-2{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px;
+  }
+  .edit-save {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px;
+    
+  }
+  .button {
+    width: 45%;
+    padding: 6px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .update-message {
+    position: fixed;
+    top: 19px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 60px;
+    background-color: #d1e7dd; 
+    border: 1px solid #203f28;
+   border-radius: 8px;
+    padding: 10px;
+   
+    display: flex;
+    
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease-in-out;
+    
+  }
+  
+  
+  .update-message.success {
+    color:#203f28;
+    
+  }
+  
+  .update-message.error {
+    color: red;
+  } 
+
+}

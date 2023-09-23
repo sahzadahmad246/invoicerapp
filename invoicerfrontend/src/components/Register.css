@@ -1,0 +1,140 @@
+.resgister-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90vh;
+  /* background: red; */
+}
+.form-container {
+  width: 60%;
+  height: 85vh;
+  border-radius: 10px;
+  padding: 36px;
+  background: #fff;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form .already-registered{
+display: none;
+}
+
+.left-register {
+  width: 40%;
+  height: 100%;
+  /* border: 1px solid red; */
+  /* display: flex; */
+}
+.form-element {
+  border-bottom: 1px solid black;
+  padding: 5px 0px;
+  margin: 21px 0px;
+}
+
+.form-element input {
+  outline: none;
+  width: 83%;
+}
+.register-btn {
+  width: 170px;
+  padding: 9px;
+  background: #1a1919;
+  color: #fff;
+  border: none;
+  margin-top: 10px;
+  /* border-radius: 20px; */
+}
+.right-register {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+.right-register .close-btn {
+  position: absolute;
+  top: -6%;
+  /* border: 1px solid black; */
+  right: -14%;
+}
+.right-register p {
+  margin-left: 115px;
+}
+.right-register p NavLink {
+  text-decoration: none;
+}
+.signup-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signup-img img {
+  width: 330px;
+}
+
+@media (max-width: 768px) {
+    .resgister-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 90vh;
+        margin-top: 50px;
+        /* background: red; */
+      }
+  .form-container {
+    width: 90%;
+    /* margin-top: 25px; */
+    height: auto;
+    
+    border-radius: 10px;
+    padding: 15px 19px;
+    background: #fff;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+  .form-element {
+    margin: 30px 0px;
+  }
+  .form-element input {
+    padding: 7px;
+  }
+
+  form p{
+    display: block;
+    }
+
+  .right-register {
+    display: none;
+  }
+  h2{
+    text-align: center;
+    margin: 8px 0px;
+  }
+  .left-register {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid red; */
+    /* display: flex; */
+  }
+
+  .register-btn {
+    width: 100%;
+    padding: 7px;
+    margin:  15px 0px ;
+    background: #1a1919;
+    color: #fff;
+    border: none;
+    /* border-radius: 20px; */
+  }
+}

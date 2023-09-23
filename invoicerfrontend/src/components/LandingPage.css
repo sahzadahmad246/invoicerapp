@@ -1,0 +1,79 @@
+
+.landing-page {
+    display: flex;
+   
+    align-items: center; 
+    height: 85vh;
+    color: #000;
+   
+  }
+  
+  .landing-content {
+  
+  }
+  
+  h1 {
+    font-size: 34px;
+    margin: 20px 0px;
+    
+  }
+  
+  p {
+    font-size: 17px;
+    margin: 20px 0px;
+    
+  }
+  .get-started{
+    margin: 20px 0px;
+    padding: 10px;
+    width: 150px;
+    border-radius: 0px ;
+  }
+  
+  .landing-image img{
+      
+    width: 600px;
+    
+    
+  }
+  
+  .get-started-btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .landing-page{
+      display: flex;
+      position: relative;
+      flex-direction: column-reverse;
+      align-items: center;
+     
+      height: auto;
+    }
+
+    
+    .landing-content{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      
+    }
+    h1{
+      text-align: center;
+      margin: 0px 0px;
+    }
+    p{
+      text-align: center;
+      margin: 10px;
+    }
+   .landing-image img{
+      
+      width: 300px;
+      
+      
+    }
+    .register-btn{
+      width: 70px;
+    }
+  }

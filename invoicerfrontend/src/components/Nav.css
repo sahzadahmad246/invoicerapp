@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    border: 1px solid red;
+
+}
+.navbar .nav-item{
+    padding: 10px;
+    margin: 0px 5px;
+}
+
+.navbar-brand img{
+    width: 150px;
+}

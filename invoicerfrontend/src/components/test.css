@@ -1,0 +1,179 @@
+/* InvoicePDF.css */
+.page {
+  font-family: Helvetica;
+  padding: 30pt;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bussinessName {
+  font-size: 40pt;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.address {
+  font-size: 17pt;
+}
+.contact {
+  display: flex;
+}
+.contact .number,
+.email,
+.gst {
+  padding: 3px 10px;
+  font-size: 17pt;
+}
+
+.customer-info {
+  margin-top: 20pt;
+  display: flex;
+  font-size: 22px;
+  justify-content: space-between;
+  /* box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3); */
+}
+.left-customer-info {
+  border-top-left-radius: 9px;
+  width: 50%;
+}
+.right-customer-info {
+  /* border: 1px solid black; */
+  width: 50%;
+}
+.customer-data div {
+  padding: 6px 0px;
+}
+.customer-data-title {
+  background: #f0f0f0;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}
+
+.table {
+  /* border: 1px solid black; */
+  margin-top: 20pt;
+  height: 1000px;
+  font-size: 22px;
+  position: relative;
+  background: #fff;
+}
+
+.tableHeader {
+  display: table;
+  width: 100%;
+
+  background: #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .table .tableRow .description {
+  width: 55%;
+  padding: 0px;
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  border: 1px solid red;
+ 
+} */
+.tableRow .description,
+.tableRow .quantity,
+.tableRow .rate,
+.tableRow .amount {
+  width: 55%;
+  padding: 0px;
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  /* border: 1px solid red; */
+}
+
+.tableRow .quantity,
+.tableRow .rate,
+.tableRow .amount {
+width: 15%;
+}
+
+.imei-in-invoice {
+  padding: 0px;
+  font-weight: 400;
+}
+.tableHeader .description {
+  width: 55%;
+  padding: 7px;
+  text-align: center;
+  
+}
+.tableHeader .quantity,
+.rate,
+.amount {
+  width: 15%;
+  padding: 7px;
+  text-align: center;
+ 
+}
+
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  /* border: 1pt solid #bfbfbf; */
+  border-top: none; /* Remove border-top */
+}
+
+.tableRow {
+  display: flex;
+  border-bottom-width: 1pt;
+  /* border-bottom-color: #bfbfbf; */
+  align-items: center;
+  height: 30pt;
+  font-weight: bold;
+}
+.footer-div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* ... your footer styles ... */
+}
+.footer-div .footer {
+  border-bottom-width: 1pt;
+  border-bottom-color: #bfbfbf;
+  align-items: center;
+  height: 30pt;
+  font-weight: bold;
+}
+.footer-div .tableRow .description {
+  font-weight: lighter;
+  padding: 5px;
+}
+.footer-div .tableRow .quantity {
+  background: #f0f0f0;
+}
+
+.terms {
+  margin-top: 20pt;
+  /* border: 1px solid red; */
+}
+
+.stamp {
+  height: 110px;
+  border: 1px solid red;
+}
+.sign {
+  display: flex;
+  justify-content: space-around;
+
+  font-weight: 700;
+  width: 35%;
+}
+
+
+@media (max-width: 768px) {
+  
+}
