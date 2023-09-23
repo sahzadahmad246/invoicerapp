@@ -24,9 +24,7 @@ if (process.env.NODE_ENV == "production" ) {
 }
 
 
-app.get("/", (req, res) => {
-  res.send("Hello from back end");
-});
+
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
