@@ -11,9 +11,9 @@ const User = require("../models/userSchema");
 
 console.log(User);
 
-router.get("/", (req, res) => {
-  res.send("Hello from back end router.js");
-});
+// router.get("/", (req, res) => {
+//   res.send("Hello from back end router.js");
+// });
 
 // using promises
 // router.post('/register', (req, res) =>{
