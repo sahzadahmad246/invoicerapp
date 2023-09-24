@@ -4,6 +4,8 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const path = require("path");
+
 
 
 dotenv.config({ path: "./config.env" });
@@ -21,6 +23,10 @@ const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV == "production" ) {
   app.use(express.static("invoicefrontend/build")); 
+  // Add a catch-all route for React Router
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "invoicefrontend", "build", "index.html"));
+  });
 }
 
 
