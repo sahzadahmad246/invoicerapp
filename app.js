@@ -25,7 +25,7 @@ if (process.env.NODE_ENV == "production" ) {
   app.use(express.static("invoicefrontend/build")); 
   // Add a catch-all route for React Router
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "invoicefrontend", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "invoicerfrontend", "build", "index.html"));
   });
 }
 
