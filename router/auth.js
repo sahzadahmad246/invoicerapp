@@ -6,35 +6,12 @@ const mongoose = require("mongoose");
 const authenticate = require("../middleware/authenticate");
 
 require("../db/conn");
-// const User = require("../models/userSchema");
+
 const User = require("../models/userSchema");
 
 console.log(User);
 
-// router.get("/", (req, res) => {
-//   res.send("Hello from back end router.js");
-// });
-
-// using promises
-// router.post('/register', (req, res) =>{
-//     const { bussinessName, yourName, mobileNumber, email, password, address} = req.body
-
-//     User.findOne({ email : email})
-//     .then((userExist) =>{
-//         if(userExist){
-//             return res.status(422).json({email: "email already exist"});
-//         }
-
-//         const user = new User({bussinessName, yourName, mobileNumber, email, password, address});
-
-//         user.save().then(() =>{
-//             res.status(201).json({ message : "user registered successfully"})
-//         }).catch((err) => res.status(500).json ({ message: "registration failed"}));
-//     }).catch(err => {console.log(err); });
-// })
-
-// using async await
-
+//sign up route
 router.post("/register", async (req, res) => {
   const { bussinessName, number, email, gst, password, address } = req.body;
 
@@ -72,20 +49,18 @@ router.post("/signin", async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({ error: "please fill the data" });
     }
-    // console.log("Attempting to find user with email:", email);
+
     const userLogin = await User.findOne({ email: email });
-    // console.log("User found:", userLogin);
 
     if (userLogin) {
       const isMatch = await bcrypt.compare(password, userLogin.password);
-      // console.log("isMatch:", isMatch);
 
       const token = await userLogin.generateAuthToken();
       res.cookie("jwtoken", token, {
         expires: new Date(Date.now() + 25892000000),
         httpOnly: true,
       });
-      // console.log(userLogin.password);
+
       if (!isMatch) {
         res.status(400).json({ error: "invalid credentials " });
       } else {
@@ -101,7 +76,6 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-// sending data for product page
 router.get("/product", authenticate, (req, res) => {
   res.send(req.rootUser);
 });
@@ -146,26 +120,21 @@ router.get("/logout", authenticate, (req, res) => {
   res.status(200).send("User Logged out");
 });
 
-// ... (other code)
-
-// Update user data route
+// Updating user data route
 router.put("/update-data", authenticate, async (req, res) => {
   try {
     const { email, number, gst } = req.body;
 
-    // Find the user by their ID
     const user = await User.findById(req.userID);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Update user data
     user.email = email;
     user.number = number;
     user.gst = gst;
 
-    // Save the updated user data
     await user.save();
 
     res.status(200).json({ message: "User data updated successfully" });
@@ -183,14 +152,12 @@ router.post("/add-product", authenticate, async (req, res) => {
       return res.status(422).json({ error: "Please fill all the fields" });
     }
 
-    // Find the user by their ID
     const user = await User.findById(req.userID);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Use the addProduct method to add the product
     await user.addProduct(productName, productDescription, price);
 
     res.status(201).json({ message: "Product added successfully" });
@@ -200,7 +167,7 @@ router.post("/add-product", authenticate, async (req, res) => {
   }
 });
 
-// Fetch added product data
+// Fetching added product data
 router.get("/fetch-added-products", authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.userID);
@@ -209,7 +176,7 @@ router.get("/fetch-added-products", authenticate, async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Extract product data from user
+    // Extracting product data from user
     const addedProducts = user.products;
 
     res.status(200).json({ addedProducts });
@@ -236,7 +203,7 @@ router.put("/update-product/:productId", authenticate, async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Find the product by its ID in the user's products array
+    // Finding the product by its ID in the user's products array
     const productIndex = user.products.findIndex(
       (product) => product._id.toString() === productId
     );
@@ -269,7 +236,7 @@ router.delete("/delete-product/:productId", authenticate, async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Find the index of the product to be deleted in the products array
+    // Finding the index of the product to be deleted in the products array
     const productIndex = user.products.findIndex(
       (product) => product._id.toString() === productId
     );
@@ -278,10 +245,8 @@ router.delete("/delete-product/:productId", authenticate, async (req, res) => {
       return res.status(404).json({ error: "Product not found" });
     }
 
-    // Remove the product from the products array
     user.products.splice(productIndex, 1);
 
-    // Save the updated user object
     await user.save();
 
     res.status(200).json({ message: "Product deleted successfully" });
@@ -306,20 +271,19 @@ router.get("/products", async (req, res) => {
   }
 });
 
-//  route to get  data from the databasefor InvoicePdf
+//  route to get  data from the database for InvoicePdf
 router.get("/get-data", async (req, res) => {
   try {
-    const users = await User.find(); // Retrieve all users from the collection
+    const users = await User.find();
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
-// Create a route to handle data sent from the frontend
+// route to handle data sent from the frontend
 router.post("/send-data-to-backend", authenticate, async (req, res) => {
   try {
-    // Access the data sent from the frontend
     const {
       customerName,
       customerAddress,
@@ -350,13 +314,12 @@ router.post("/send-data-to-backend", authenticate, async (req, res) => {
       return res.status(422).json({ error: "Please fill all the fields" });
     }
 
-    // Find the user by their ID
     const user = await User.findById(req.userID);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    // Use the addProduct method to add the product
+
     await user.addInvoiceData(
       customerName,
       customerAddress,
@@ -368,71 +331,57 @@ router.post("/send-data-to-backend", authenticate, async (req, res) => {
       subtotal,
       discount,
       total,
-      dateAndTime,
+      dateAndTime
     );
 
     res.status(200).json({ message: "Invoice saved successfully" });
   } catch (error) {
-    // Handle errors and respond with an error message
     console.error("Error saving data:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
 
-
 // sending invoice data to history pagefrom data base
 
-// Add this route to your router.js or invoice.js file (wherever your other routes are defined)
 router.get("/get-invoice-data", authenticate, async (req, res) => {
   try {
-    // Find the user by their ID
     const user = await User.findById(req.userID);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Retrieve the invoiceData from the user (assuming it's an array in your schema)
     const invoiceData = user.invoiceData;
 
-    // Respond with the retrieved invoiceData
     res.status(200).json({ invoiceData });
   } catch (error) {
-    // Handle errors and respond with an error message
     console.error("Error fetching invoice data:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
 
-// Create a route to get the latest saved invoiceNumber
-// Add this route to your router.js or invoice.js file
+//route to get the latest saved invoiceNumber
+
 router.get("/get-latest-invoice-number", authenticate, async (req, res) => {
   try {
-    // Find the user by their ID
     const user = await User.findById(req.userID);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Retrieve the invoiceData from the user (assuming it's an array in your schema)
     const invoiceData = user.invoiceData;
 
-    // Sort the invoiceData array by invoiceNumber in descending order
     invoiceData.sort((a, b) => b.invoiceNumber - a.invoiceNumber);
 
-    // Get the latest invoiceNumber
     const latestInvoiceNumber =
       invoiceData.length > 0 ? invoiceData[0].invoiceNumber : 10001;
 
-    // Respond with the latest invoiceNumber
     res.status(200).json({ latestInvoiceNumber });
   } catch (error) {
-    // Handle errors and respond with an error message
     console.error("Error fetching latest invoice number:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
-
 
 module.exports = router;

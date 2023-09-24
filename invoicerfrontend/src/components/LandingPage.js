@@ -1,11 +1,10 @@
 import React from 'react';
-import './LandingPage.css'; // Create a CSS file for styling
+import './LandingPage.css'; 
 import Landing from '../images/landing.png';
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
-
+  const navigate = useNavigate(); 
   const onButtonClick = () => {
     navigate("/register");
   };

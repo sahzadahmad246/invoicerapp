@@ -62,7 +62,7 @@ const userSchema = new mongoose.Schema({
         required: true,
       },
       price: {
-        type: String, // Or any appropriate type for price
+        type: String,
         required: true,
       },
     },
@@ -101,7 +101,6 @@ const userSchema = new mongoose.Schema({
           },
           imei: {
             type: Number,
-           
           },
         },
       ],
@@ -127,7 +126,6 @@ const userSchema = new mongoose.Schema({
       },
       dateAndTime: {
         type: String,
-        
       },
     },
   ],
@@ -145,7 +143,6 @@ const userSchema = new mongoose.Schema({
 userSchema.pre("save", async function (next) {
   console.log("hi from inside");
   if (this.isModified("password")) {
-    // Corrected typo here
     try {
       this.password = await bcrypt.hash(this.password, 12);
     } catch (error) {
@@ -200,7 +197,7 @@ userSchema.methods.addProduct = async function (
       price,
     });
     await this.save();
-    return this.products; // Return the updated products array
+    return this.products;
   } catch (error) {
     console.log(error);
   }
@@ -234,12 +231,12 @@ userSchema.methods.addInvoiceData = async function (
       dateAndTime,
     });
     await this.save();
-    return this.invoiceData; // Return the updated products array
+    return this.invoiceData;
   } catch (error) {
     console.log(error);
   }
 };
 
-const User = mongoose.model("User", userSchema); // Changed 'USER' to 'User'
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

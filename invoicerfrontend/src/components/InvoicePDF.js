@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import "./InvoicePDF.css"; // Import your external styles
+import "./InvoicePDF.css";
 import { useInputContext } from "../InputContext";
 import BillTemplate from "./BillTemplate";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,6 @@ const InvoicePDF = () => {
   const [alertMessage, setAlert] = useState(null);
 
   const goBack = () => {
-    // Use the navigate function to navigate back to the previous page
     navigate(-1);
   };
 
@@ -31,43 +30,38 @@ const InvoicePDF = () => {
       pdf.addImage(imgData, "JPEG", 10, 10, 190, 0);
       pdf.save("invoice.pdf");
 
-      // Increment the invoice number and update the state
+      // Incrementing the invoice number and updating the state
       setInvoiceNumber((prevNumber) => prevNumber + 1);
     });
   };
 
-  // Add this useEffect to your component
-useEffect(() => {
-  // Fetch the latest invoice number from the database
-  const fetchLatestInvoiceNumber = async () => {
-    try {
-      const response = await fetch("/get-latest-invoice-number", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  useEffect(() => {
+    // Fetching the latest invoice number from the database
+    const fetchLatestInvoiceNumber = async () => {
+      try {
+        const response = await fetch("/get-latest-invoice-number", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      if (response.status === 200) {
-        const data = await response.json();
-        const latestInvoiceNumber = data.latestInvoiceNumber;
+        if (response.status === 200) {
+          const data = await response.json();
+          const latestInvoiceNumber = data.latestInvoiceNumber;
 
-        // Update the invoice number state with the latest value
-        setInvoiceNumber(latestInvoiceNumber + 1);
+          setInvoiceNumber(latestInvoiceNumber + 1);
+        }
+      } catch (error) {
+        console.error("Error fetching latest invoice number:", error);
       }
-    } catch (error) {
-      console.error("Error fetching latest invoice number:", error);
-    }
-  };
+    };
 
-  // Call the function to fetch the latest invoice number
-  fetchLatestInvoiceNumber();
-}, []); // Run this effect only once, when the component mounts
-
+    fetchLatestInvoiceNumber();
+  }, []);
 
   const sendDataToBackend = async () => {
     try {
-      
       const dataToSend = {
         customerName: state.customerName,
         customerAddress: state.customerAddress,
@@ -80,23 +74,22 @@ useEffect(() => {
         discount: discountAmount,
         total: totalAmount,
         dateAndTime: formatDate(currentDateTime),
-        
       };
-  
-      // Make a POST request to your backend API endpoint using the fetch API
+
+      // POST request to  backend API endpoint
       const response = await fetch("/send-data-to-backend", {
-        // Updated endpoint
+        
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dataToSend),
       });
-  
+
       if (response.status === 200) {
         setAlert("Invoice saved successfully");
-  
-        // Increment the invoice number and update the state
+
+        
         setInvoiceNumber((prevNumber) => prevNumber + 1);
       } else {
         setAlert("Failed to save invoice. Please try again.");
@@ -105,7 +98,7 @@ useEffect(() => {
       setAlert("An error occurred. Please try again.");
     }
   };
-  
+
   useEffect(() => {
     if (alertMessage) {
       const timeoutId = setTimeout(() => {
@@ -157,18 +150,16 @@ useEffect(() => {
     (total, product) => total + (product.price - 0.18 * product.price),
     0
   );
-  // Calculate the discounted amount based on the discount type and value
-
-  // Calculate the discounted amount based on the discount type and value
+  
   let discountSymbol = "";
   let discountAmount = discountValue;
 
   if (discountType === "percent") {
     discountSymbol = "%";
-    // Check if discountValue is a valid number
+    // Checking if discountValue is a valid number
     const discountValueAsNumber = parseFloat(discountValue);
     if (!isNaN(discountValueAsNumber)) {
-      // Calculate the discount amount as a percentage of totalAmountBeforeTax
+      // Calculating the discount amount as a percentage of totalAmountBeforeTax
       discountAmount = (
         (discountValueAsNumber / 100) *
         totalAmountBeforeTax
@@ -178,18 +169,15 @@ useEffect(() => {
     discountSymbol = "₹";
   }
 
-  // Now, discountAmount will be the discount value if discountType is "amount",
-  // or it will be calculated as a percentage of totalAmountBeforeTax if discountType is "percent"
-  // Calculating the SGST and CGST amount
-  // Initialize gstAmount to 0 by default
+  // Initializing gstAmount to 0 by default
   let gstAmount = 0;
 
-  // Calculate and store the GST for each product within the reduce function
+  
   state.selectedProducts.forEach((product) => {
     const calculatedGST = product.price * 0.09;
 
     if (typeof calculatedGST === "number" && !isNaN(calculatedGST)) {
-      // Add the calculated GST to gstAmount only if it's a valid number
+     
       gstAmount += calculatedGST;
     }
   });
@@ -208,10 +196,10 @@ useEffect(() => {
 
   // Capitalizing the first letter of totalAmountInWords
   const totalAmountInWordsCapitalized =
-  capitalizeFirstLetter(totalAmountInWords);
+    capitalizeFirstLetter(totalAmountInWords);
 
   const saveAndPrint = () => {
-    // Call both function1 and function2
+    
     printPDF();
     sendDataToBackend();
   };
@@ -237,7 +225,6 @@ useEffect(() => {
         <button className="print-button container" onClick={saveAndPrint}>
           Print <i class="fa-solid fa-print"></i>
         </button>
-       
       </div>
 
       <div id="pdf-content" className="page">
@@ -299,8 +286,8 @@ useEffect(() => {
           {state.selectedProducts.map((product) => {
             const originalPrice = product.price;
             const imei = product.imei;
-            const discount = Math.round(0.18 * originalPrice); // 18% discount (rounded)
-            const priceBeforeTax = Math.round(originalPrice - discount); // Rounded to the nearest whole number
+            const discount = Math.round(0.18 * originalPrice); 
+            const priceBeforeTax = Math.round(originalPrice - discount); 
 
             return (
               <div className="tableRow " key={product._id}>

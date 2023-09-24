@@ -8,10 +8,7 @@ import { NavLink, useNavigate} from "react-router-dom";
 
 
 import Signup from "../images/signup.png";
-// import {
-  
-//   faTimes,
-// } from "@fortawesome/free-solid-svg-icons";
+
 
 const Register = () => {
   const Navigate = useNavigate();
@@ -38,36 +35,8 @@ const Register = () => {
     setUser ({...user, [name]:value});
   };
 
-  // const PostData = async (e)  =>{
-  //   e.preventDefault();
-  //   const { bussinessName, number, email, gst, password, address} = user;
-
-  //   console.log(number);
-
-  //   const res = await fetch("/register", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       bussinessName, number, email, gst, password, address
-  //     })
-  //   }) 
-
-  //   const data = await res.json();
-
-  //   if(data.status === 422 || !data){
-  //     window.alert("Registration Failed")
-  //     console.log("Registration Failed")
-  //   } else{
-  //     window.alert("Registration Success")
-  //     console.log("Registration Success")
-  //     Navigate("/login")
-  //   }
-
-    
-    
-  // };
+  
+  
 
   const PostData = async (e) => {
     e.preventDefault();

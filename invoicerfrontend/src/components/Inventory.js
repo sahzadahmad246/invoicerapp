@@ -28,10 +28,10 @@ const Inventory = () => {
   const handlePriceChange = (e) => {
     const input = e.target.value;
 
-    // Remove non-numeric characters except dots (.) to allow decimals
+    
     const numericInput = input.replace(/[^0-9.]/g, "");
 
-    // Ensure there's only one dot (.) to allow decimals
+    
     const decimalCount = numericInput.split(".").length - 1;
     const formattedInput =
       decimalCount > 1 ? numericInput.slice(0, -1) : numericInput;
@@ -62,8 +62,7 @@ const Inventory = () => {
           productDescription,
           price,
         };
-        setAddedProducts([...addedProducts, newProduct]); // Add new product to state
-        // Clear the input fields after successful submission
+        setAddedProducts([...addedProducts, newProduct]); 
         setProductName("");
         setProductDescription("");
         setPrice("");
@@ -99,7 +98,7 @@ const Inventory = () => {
   };
 
   useEffect(() => {
-    fetchAddedProducts(); // Fetch added products when component mounts
+    fetchAddedProducts(); // Fetching added products when component mounts
   }, []);
 
   useEffect(() => {
@@ -138,7 +137,7 @@ const Inventory = () => {
       if (response.status === 200) {
         // console.log("Product updated successfully");
         setUpdateMessage("Item updated successfully.");
-        // Update the product details in the addedProducts state
+        // Updating the product details in the addedProducts state
         const updatedProducts = addedProducts.map((product) =>
           product._id === selectedProduct._id
             ? {
@@ -150,7 +149,7 @@ const Inventory = () => {
             : product
         );
         setAddedProducts(updatedProducts);
-        setSelectedProduct(null); // Clear selected product
+        setSelectedProduct(null); 
       } else {
         console.error("Error updating product");
         setUpdateMessage("Failed to update item. Please try again.");
@@ -179,15 +178,15 @@ const Inventory = () => {
           (product) => product._id !== productToDelete._id
         );
         setAddedProducts(updatedProducts);
-        setProductToDelete(null); // Clear the productToDelete state
-        setDeleteModalVisible(false); // Close the modal
+        setProductToDelete(null); 
+        setDeleteModalVisible(false); 
       } else {
         console.error("Error deleting product");
-        // Handle error scenario here
+        
       }
     } catch (error) {
       console.error("Error deleting product:", error);
-      // Handle error scenario here
+      
     }
   };
 
@@ -272,7 +271,7 @@ const Inventory = () => {
                 filteredProducts.map((product, index) => (
                   <div key={index} className="product-card">
                     {selectedProduct && selectedProduct._id === product._id ? (
-                      // Display edit form when selected product matches
+                      // Displaying edit form when selected product matches
                       <div className="update-boxes">
                         <div className="product-row">
                           <input
@@ -306,7 +305,7 @@ const Inventory = () => {
                         </div>
                       </div>
                     ) : (
-                      // Display product info and dropdown when not editing
+                      // Displaying product info and dropdown when not editing
                       <>
                         <div className="product-info">
                           <h6 className="">{product.productName}</h6>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Contact.css"; // Create this CSS file for custom styling
+import "./Contact.css"; 
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 

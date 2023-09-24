@@ -7,8 +7,8 @@ const initialState = {
   imei: '',
   paymentMode: '',
   selectedProducts: [],
-  discountType: 'percent', // Include discountType in the initial state
-  discountValue: '',       // Include discountValue in the initial state
+  discountType: 'percent', 
+  discountValue: '',       
 };
 
 const reducer = (state, action) => {
@@ -22,7 +22,7 @@ const reducer = (state, action) => {
       ...state,
       selectedProducts: action.payload.selectedProducts,
     };
-  } else if (action.type === 'DISCOUNT') { // Handle discount type and value
+  } else if (action.type === 'DISCOUNT') { 
     return {
       ...state,
       discountType: action.payload.discountType,

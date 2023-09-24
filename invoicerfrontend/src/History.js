@@ -4,23 +4,23 @@ import "./History.css";
 const History = () => {
   const [invoiceData, setInvoiceData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState(""); // State for the search term
-  const [openDropdowns, setOpenDropdowns] = useState([]); // State to track open/closed dropdowns
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [openDropdowns, setOpenDropdowns] = useState([]); 
 
   const toggleDropdown = (index) => {
-    // Create a copy of the openDropdowns array
+    
     const updatedOpenDropdowns = [...openDropdowns];
-    // Toggle the dropdown state for the clicked index
+    
     updatedOpenDropdowns[index] = !updatedOpenDropdowns[index];
     setOpenDropdowns(updatedOpenDropdowns);
   };
 
   useEffect(() => {
-    // Fetch invoice data when the component mounts
+    
     fetch("/get-invoice-data")
       .then((response) => response.json())
       .then((data) => {
-        // Initialize openDropdowns with false for each invoice
+       
         const initialOpenDropdowns = new Array(data.invoiceData.length).fill(
           false
         );
@@ -36,7 +36,7 @@ const History = () => {
   const filteredInvoices = invoiceData.filter((invoice) => {
     const searchTermLowerCase = searchTerm.toLowerCase();
 
-    // Check if any of the relevant fields contain the search term
+    
     return (
       invoice.customerName.toLowerCase().includes(searchTermLowerCase) ||
       invoice.customerMobileNumber
@@ -68,7 +68,7 @@ const History = () => {
         <p>Loading...</p>
       ) : (
         <div>
-          {/* Render the filtered invoice data */}
+          
           {filteredInvoices.map((invoice, index) => (
             <div key={invoice._id}>
               <div className="history dropdown-center">

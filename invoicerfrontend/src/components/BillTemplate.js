@@ -4,7 +4,7 @@ import { QrReader } from "react-qr-reader";
 import { useNavigate } from "react-router-dom";
 
 import "./BillTemplate.css";
-// import BarcodeScanner from "../components/BarcodeScanner";
+
 
 const BillTemplate = () => {
   const { state, dispatch } = useInputContext();
@@ -19,7 +19,7 @@ const BillTemplate = () => {
   const [isScanning, setIsScanning] = useState(false);
   const [scannedIMEI, setScannedIMEI] = useState("");
   const [qrScannerVisible, setQrScannerVisible] = useState(false);
-  const [torchEnabled, setTorchEnabled] = useState(false); // State to control the flashlight
+  const [torchEnabled, setTorchEnabled] = useState(false); 
  
 
   // Function to handle QR code scan
@@ -29,37 +29,35 @@ const BillTemplate = () => {
     }
   };
 
-  // Function to handle QR code scanner errors
   const handleError = (error) => {
     console.error("QR Code Scanner Error:", error);
-    // Handle errors here, such as displaying an error message to the user
+   
   };
 
-  // Function to start QR code scanning with flashlight
   const startScanning = () => {
     setIsScanning(true);
-    setTorchEnabled(true); // Enable the flashlight
-    setQrScannerVisible(true); // Show the QR scanner
+    setTorchEnabled(true); 
+    setQrScannerVisible(true); 
   };
 
-  // Function to stop QR code scanning and turn off flashlight
+  
   const stopScanning = () => {
     setIsScanning(false);
-    setTorchEnabled(false); // Disable the flashlight
-    setQrScannerVisible(false); // Hide the QR scanner
+    setTorchEnabled(false); 
+    setQrScannerVisible(false); 
   };
   const handleDiscountTypeChange = (e) => {
     const selectedType = e.target.value;
     setDiscountType(selectedType);
 
-    // Dispatch the discount type to the context
+    // Dispatching the discount type to the context
     dispatch({
       type: "DISCOUNT",
       payload: { discountType: selectedType, discountValue: discount },
     });
   };
 
-  // Define a function to check if all required fields are filled
+  // function to check if all required fields are filled
   const areAllFieldsFilled = () => {
     return (
       state.customerName.trim() !== "" &&
@@ -69,32 +67,23 @@ const BillTemplate = () => {
     );
   };
 
-  // // Handle "Continue" button click
-  // const handleContinueClick = () => {
-  //   if (areAllFieldsFilled()) {
-  //     // All required fields are filled, proceed to navigate
-  //     navigate("/invoice-pdf");
-  //   } else {
-  //     // Show an alert or error message indicating that all required fields must be filled
-  //     alert("Please fill in all required fields before continuing.");
-  //   }
-  // };
+ 
 
   const handleDiscountChange = (e) => {
     const discountValue = e.target.value;
     setDiscount(discountValue);
-    setIsDiscountApplied(false); // Reset the discount applied status
+    setIsDiscountApplied(false); 
 
-    // Dispatch the discount value to the context
+    
     dispatch({
       type: "DISCOUNT",
       payload: { discountType, discountValue },
     });
   };
 
-  // Step 4: Add a function to apply the discount
+  
   const applyDiscount = () => {
-    // Apply the discount based on the selected discount type
+   
     let discountedPrice = parseFloat(state.totalPrice);
 
     if (discountType === "amount") {
@@ -111,13 +100,13 @@ const BillTemplate = () => {
       }
     }
 
-    // Update the context state with the discounted price
+    // Updating the context state with the discounted price
     dispatch({
       type: "USER",
-      payload: { totalPrice: discountedPrice.toFixed(2) }, // Assuming you have a totalPrice field in your context
+      payload: { totalPrice: discountedPrice.toFixed(2) }, 
     });
 
-    setIsDiscountApplied(true); // Set the discount applied status
+    setIsDiscountApplied(true); 
   };
 
   const handleInputChange = (e) => {
@@ -129,13 +118,13 @@ const BillTemplate = () => {
   };
 
   const transferDataToInvoicePDF = () => {
-    // Create an array to store selected product data including IMEI
+   
     const selectedProductData = selectedProducts.map((product) => ({
       ...product,
       imei: imeiValues[product._id] || "",
     }));
 
-    // Dispatch the current input data to the context, including selected products with IMEI
+    
     dispatch({
       type: "USER",
       payload: {
@@ -153,7 +142,7 @@ const BillTemplate = () => {
     setSelectProduct(inputText);
 
     if (inputText.trim() === "") {
-      setMatchedProducts([]); // Clear matched products when input is empty
+      setMatchedProducts([]); 
     } else {
       performSearch(inputText);
     }
@@ -173,14 +162,14 @@ const BillTemplate = () => {
     if (!selectedProducts.some((p) => p._id === product._id)) {
       const updatedProduct = {
         ...product,
-        imei: "", // Initialize IMEI as an empty string
+        imei: "", 
       };
 
       setSelectedProducts([...selectedProducts, updatedProduct]);
-      setSelectProduct(""); // Clear the search input
-      setMatchedProducts([]); // Clear the matched products
+      setSelectProduct(""); 
+      setMatchedProducts([]); 
 
-      // Add the selected product (including IMEI) to the context state
+      
       dispatch({
         type: "PRODUCT",
         payload: { selectedProducts: [...selectedProducts, updatedProduct] },
@@ -189,25 +178,25 @@ const BillTemplate = () => {
   };
 
   const handleImeiChange = (product, imei) => {
-    // Update the IMEI values state
+    
     setImeiValues((prevState) => ({
       ...prevState,
       [product._id]: imei,
     }));
 
-    // Find the index of the product in the selectedProducts array
+   
     const productIndex = selectedProducts.findIndex(
       (p) => p._id === product._id
     );
 
-    // Create a copy of the selected products array with the updated IMEI
+    
     const updatedSelectedProducts = [...selectedProducts];
     updatedSelectedProducts[productIndex] = {
       ...updatedSelectedProducts[productIndex],
       imei,
     };
 
-    // Dispatch the updated selected products to the context
+    
     dispatch({
       type: "PRODUCT",
       payload: {
@@ -320,17 +309,17 @@ const BillTemplate = () => {
                     />
                     <i
                       className="fa-solid fa-qrcode"
-                      onClick={startScanning} // Start QR code scanning when clicking the icon
+                      onClick={startScanning} 
                     ></i>
                   </div>
-                  {/* Render the QR code scanner when scanning is active */}
+                  
                   {isScanning && qrScannerVisible && (
           <div className="qr-scanner">
             <QrReader
               delay={300}
               onError={handleError}
               onScan={handleScan}
-              torchMode={torchEnabled ? "torch" : undefined} // Control the flashlight
+              torchMode={torchEnabled ? "torch" : undefined} 
               style={{ width: "100%" }}
             />
             <button onClick={stopScanning}>Stop Scanning</button>
@@ -342,7 +331,7 @@ const BillTemplate = () => {
           </div>
         </div>
         <div className="discount  container">
-          {/* Step 3: Add radio buttons for discount type */}
+          
           <div className="discount-type">
             <label className="mr-3">
               <input
@@ -366,7 +355,7 @@ const BillTemplate = () => {
             </label>
           </div>
 
-          {/* Step 4: Add the discount input field */}
+          
           <div className="discount-input">
             <input
               className="p-2 m-1 form-control"
@@ -381,11 +370,11 @@ const BillTemplate = () => {
               onChange={handleDiscountChange}
             />
 
-            {/* Step 4: Add the Apply Discount button */}
+            
             <button
               className="apply-discount-button"
               onClick={applyDiscount}
-              disabled={isDiscountApplied} // Disable the button if discount is applied
+              disabled={isDiscountApplied} 
             >
               {isDiscountApplied ? "Applied" : "Apply"}
             </button>

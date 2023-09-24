@@ -10,13 +10,11 @@ import Logout from "./components/Logout";
 import Home from "./components/Home";
 import History from "./History";
 import Register from "./components/Register";
-import { InputProvider, useInputContext } from "./InputContext"; // Import InputProvider and useInputContext
+import { InputProvider, useInputContext } from "./InputContext";
 import InvoicePDF from "./components/InvoicePDF";
 
-// Define your initial state and reducer here
 const initialState = {};
 const reducer = (state, action) => {
-  // Define your reducer logic here
   if (action.type === "USER") {
     return action.payload;
   }
@@ -47,7 +45,6 @@ function App() {
 
   return (
     <userContext.Provider value={{ state, dispatch }}>
-      {/* Wrap the whole App content with InputProvider */}
       <InputProvider>
         <Nav />
         <Routing />

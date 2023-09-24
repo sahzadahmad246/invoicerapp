@@ -1,39 +1,39 @@
-/* Add this CSS to your History.css file */
+
 
 body {
   background: rgb(249, 249, 250);
 }
 
 .history-box {
-  display: none; /* Initially hide the dropdown */
+  display: none; 
   position: absolute;
-  top: 100%; /* Position it below the button */
+  top: 100%; 
   left: 0;
   width: 100%;
   background-color: #ffffff;
   border-top: 1px dashed rgba(0, 0, 0, 0.2);
   padding: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1; /* Ensure it's above other elements */
-  opacity: 0; /* Start with 0 opacity */
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transition with a delay */
-  transform: translateY(-10px); /* Add a transform for transition effect */
-  transition-delay: 0.3s; /* Set the delay duration */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
+  transform: translateY(-10px); 
+  transition-delay: 0.3s; 
 }
 
-/* Apply this class to open the dropdown */
+
 .history-box.open {
   display: block;
   opacity: 1;
   transform: translateY(0);
-  position: relative; /* Change the position to relative */
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transition properties */
-  transition-delay: 0.9s; /* Add a delay of 0.5 seconds */
+  position: relative; 
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
+  transition-delay: 0.9s;
 }
 .history-box.open:before {
   content: "";
   position: absolute;
-  top: -10px; /* Adjust this value as needed to add space between dropdowns */
+  top: -10px; 
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid transparent;

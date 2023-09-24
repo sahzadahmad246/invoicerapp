@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import BillTemplate from "./BillTemplate";
 import LandingPage from "./LandingPage";
-import Loader from "./Loader"; // Import the Loader component
+import Loader from "./Loader"; 
 import InvoicePDF from "./InvoicePDF";
 
 const Home = () => {
@@ -39,7 +39,7 @@ const Home = () => {
 
   return (
     <>
-      {/* <Nav /> */}
+    
       {loading ? (
         <Loader />
       ) : userBussinessName ? (

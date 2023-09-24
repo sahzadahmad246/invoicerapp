@@ -5,16 +5,15 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import LoginImg from "../images/login.png";
 import { userContext } from "../App";
-// import { faEnvelope, faLock, faTimes } from "@fortawesome/free-solid-svg-icons";
-import context from "react-bootstrap/esm/AccordionContext";
-import Loader from "./Loader"; // Import the Loader component
 
+import context from "react-bootstrap/esm/AccordionContext";
+import Loader from "./Loader";
 const Login = () => {
   const { state, dispatch } = useContext(userContext);
   const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // State to track loading status
+  const [loading, setLoading] = useState(false); 
   const [updateMessage, setUpdateMessage] = useState(null);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      setLoading(true); // Start showing loader
+      setLoading(true); 
       const res = await fetch("/signin", {
         method: "POST",
         headers: {
@@ -46,7 +45,7 @@ const Login = () => {
       const data = await res.json();
 
       if (res.status === 400) {
-        // window.alert("Login Failed: Invalid credentials");
+        
         setUpdateMessage("Login Failed: Invalid credentials");
       } else if (res.status === 500) {
         // window.alert("Login Failed: Server error");
@@ -61,7 +60,7 @@ const Login = () => {
       // console.error("Error during login:", error);
       setUpdateMessage("Error during login");
     } finally {
-      setLoading(false); // Hide loader whether login is successful or not
+      setLoading(false); 
     }
   };
 

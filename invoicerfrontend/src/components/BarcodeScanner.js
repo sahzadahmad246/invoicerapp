@@ -7,7 +7,7 @@ const BarcodeScanner = () => {
   const [scannedData, setScannedData] = useState('');
   
   useEffect(() => {
-    // Initialize Quagga
+    
     Quagga.init({
       inputStream: {
         name: 'Live',
@@ -25,14 +25,14 @@ const BarcodeScanner = () => {
       Quagga.start();
     });
 
-    // Attach a callback to process the scanned barcode
+   
     Quagga.onDetected((data) => {
       const code = data.codeResult.code;
       setScannedData(code);
-      Quagga.stop(); // Stop scanning after detecting a barcode
+      Quagga.stop(); 
     });
 
-    // Clean up when the component unmounts
+
     return () => {
       Quagga.offDetected();
       Quagga.stop();
