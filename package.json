@@ -6,11 +6,9 @@
   
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js",
-    "start": "node app.js", 
-    "build:frontend": "cd frontend && npm install && npm run build",
-    "build:backend": "cd backend && npm install", 
-    "deploy": "npm run build:frontend && npm run build:backend && render deploy --build-dir invoicerapp"
+    "start": "node app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix invoicerfrontend && npm run build --prefix invoicerfrontend"
+    
   },
   "author": "shahzad",
   "license": "ISC",
